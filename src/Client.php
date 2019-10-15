@@ -444,7 +444,10 @@ class Client
         ];
 
         if ($icon = $message->getIcon()) {
-            $payload[$message->getIconType()] = $icon;
+            $type = $message->getIconType();
+            if ($type !== null) {
+                $payload[$type] = $icon;
+            }
         }
 
         if (count($message->getBlocks())) {

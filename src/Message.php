@@ -37,14 +37,14 @@ class Message
     /**
      * The URL to the icon to use.
      *
-     * @var string
+     * @var string|null
      */
     protected $icon;
 
     /**
      * The type of icon we are using.
      *
-     * @var string (one of self::ICON_* constants)
+     * @var string|null (one of self::ICON_* constants)
      */
     protected $iconType;
 
@@ -175,7 +175,7 @@ class Message
     /**
      * Get the icon (either URL or emoji) we will post as.
      *
-     * @return string
+     * @return string|null
      */
     public function getIcon()
     {
@@ -211,7 +211,7 @@ class Message
     /**
      * Get the icon type being used, if an icon is set.
      *
-     * @return string
+     * @return string|null
      */
     public function getIconType()
     {
