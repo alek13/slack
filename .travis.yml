@@ -10,7 +10,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction
 
 script:
-  - vendor/bin/phpunit
+  - composer build
 
 cache:
   directories:
