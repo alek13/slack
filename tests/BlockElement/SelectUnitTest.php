@@ -232,6 +232,49 @@ class SelectUnitTest extends TestCase
         $this->assertEquals($out, $s->toArray());
     }
 
+    public function testClearOptionsResetsSelected()
+    {
+        $s = new Select([
+            'placeholder' => 'Placeholder text',
+            'action_id'   => 'Select action',
+            'options'     => [[
+                'text'     => 'Option 1',
+                'value'    => 'option_1',
+                'selected' => true,
+            ], [
+                'text'  => 'Option 2',
+                'value' => 'option_2',
+            ]],
+        ]);
+
+        $this->assertArrayHasKey('initial_option', $s->toArray());
+        $s->clearOptions();
+        $this->assertArrayNotHasKey('initial_option', $s->toArray());
+    }
+
+    public function testClearOptionGroupsResetsSelected()
+    {
+        $s = new Select([
+            'placeholder' => 'Placeholder text',
+            'action_id'   => 'Select action',
+            'option_groups' => [[
+                'label' => 'Group 1',
+                'options'   => [[
+                    'text'     => 'Option 1',
+                    'value'    => 'option_1',
+                    'selected' => true,
+                ], [
+                    'text'  => 'Option 2',
+                    'value' => 'option_2',
+                ]],
+            ]],
+        ]);
+
+        $this->assertArrayHasKey('initial_option', $s->toArray());
+        $s->clearOptionGroups();
+        $this->assertArrayNotHasKey('initial_option', $s->toArray());
+    }
+
     public function testToArrayWithOptionGroups()
     {
         $s = new Select([

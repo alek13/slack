@@ -66,7 +66,7 @@ class Select extends AbstractSelect
     public function clearOptionGroups()
     {
         if (count($this->getOptions()) == 0) {
-            $this->hasSelectedOption = false;
+            $this->hasInitialOption = false;
         }
 
         return parent::clearOptionGroups();
@@ -80,7 +80,7 @@ class Select extends AbstractSelect
     public function clearOptions()
     {
         if (count($this->getOptionGroups()) == 0) {
-            $this->hasSelectedOption = false;
+            $this->hasInitialOption = false;
         }
 
         return parent::clearOptions();
