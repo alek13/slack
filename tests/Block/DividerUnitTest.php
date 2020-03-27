@@ -35,4 +35,23 @@ class DividerUnitTest extends TestCase
 
         $this->assertEquals($out, $d->toArray());
     }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testToArrayWithBlockId()
+    {
+        $d = new Divider([
+            'block_id' => 'block-9876',
+        ]);
+
+        $out = [
+            'type' => 'divider',
+            'block_id' => 'block-9876',
+        ];
+
+        $this->assertEquals($out, $d->toArray());
+    }
 }

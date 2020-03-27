@@ -101,6 +101,26 @@ class SelectUnitTest extends TestCase
         $this->assertSame(0, count($s->getOptions()));
     }
 
+    public function testAddInvalidOption()
+    {
+        $s = new Select([]);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The option must be an instance of Maknz\\Slack\\Object\\Option or a keyed array');
+
+        $s->addOption('Invalid');
+    }
+
+    public function testAddInvalidOptionGroup()
+    {
+        $s = new Select([]);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The option group must be an instance of Maknz\\Slack\\Object\\OptionGroup or a keyed array');
+
+        $s->addOptionGroup('Invalid');
+    }
+
     public function testCreateWithTooManySelected()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -151,6 +171,13 @@ class SelectUnitTest extends TestCase
                 ]],
             ]],
         ]);
+    }
+
+    public function testNothingInitiallySelected()
+    {
+        $s = new Select([]);
+
+        $this->assertNull($s->getInitialOption());
     }
 
     public function testToArrayWithOptions()
@@ -272,6 +299,29 @@ class SelectUnitTest extends TestCase
 
         $this->assertArrayHasKey('initial_option', $s->toArray());
         $s->clearOptionGroups();
+        $this->assertArrayNotHasKey('initial_option', $s->toArray());
+    }
+
+    public function testClearAllOptionsResetsSelected()
+    {
+        $s = new Select([
+            'placeholder' => 'Placeholder text',
+            'action_id'   => 'Select action',
+            'option_groups' => [[
+                'label' => 'Group 1',
+                'options'   => [[
+                    'text'     => 'Option 1',
+                    'value'    => 'option_1',
+                    'selected' => true,
+                ], [
+                    'text'  => 'Option 2',
+                    'value' => 'option_2',
+                ]],
+            ]],
+        ]);
+
+        $this->assertArrayHasKey('initial_option', $s->toArray());
+        $s->clearAllOptions();
         $this->assertArrayNotHasKey('initial_option', $s->toArray());
     }
 

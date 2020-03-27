@@ -51,6 +51,7 @@ class Input extends Block
     protected static $availableAttributes = [
         'label'    => 'label',
         'element'  => 'element',
+        'block_id' => 'block_id',
         'hint'     => 'hint',
         'optional' => 'optional',
     ];

@@ -74,4 +74,78 @@ class InputUnitTest extends TestCase
 
         $this->assertEquals($out, $i->toArray());
     }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testInputToArrayWithBlockId()
+    {
+        $i = new Input([
+            'label' => 'Input label',
+            'element' => [
+                'type' => 'plain_text_input',
+                'action_id' => 'input_action',
+            ],
+            'optional' => true,
+            'block_id' => 'block-1234',
+        ]);
+
+        $out = [
+            'type' => 'input',
+            'label' => [
+                'type' => Text::TYPE_PLAIN,
+                'text' => 'Input label',
+                'emoji' => false,
+            ],
+            'element' => [
+                'type' => 'plain_text_input',
+                'action_id' => 'input_action',
+            ],
+            'optional' => true,
+            'block_id' => 'block-1234',
+        ];
+
+        $this->assertEquals($out, $i->toArray());
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testInputToArrayWithHint()
+    {
+        $i = new Input([
+            'label' => 'Input label',
+            'element' => [
+                'type' => 'plain_text_input',
+                'action_id' => 'input_action',
+            ],
+            'optional' => true,
+            'hint' => 'Input hint',
+        ]);
+
+        $out = [
+            'type' => 'input',
+            'label' => [
+                'type' => Text::TYPE_PLAIN,
+                'text' => 'Input label',
+                'emoji' => false,
+            ],
+            'element' => [
+                'type' => 'plain_text_input',
+                'action_id' => 'input_action',
+            ],
+            'optional' => true,
+            'hint' => [
+                'type' => Text::TYPE_PLAIN,
+                'text' => 'Input hint',
+                'emoji' => false,
+            ],
+        ];
+
+        $this->assertEquals($out, $i->toArray());
+    }
 }

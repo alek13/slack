@@ -1,6 +1,7 @@
 <?php
 namespace Slack\Tests\Block;
 
+use InvalidArgumentException;
 use Maknz\Slack\Block\Section;
 use Maknz\Slack\BlockElement\Text;
 use Slack\Tests\TestCase;
@@ -77,6 +78,25 @@ class SectionUnitTest extends TestCase
         $this->assertSame('Text 1', $fields[0]->getText());
 
         $this->assertSame('Text 2', $fields[1]->getText());
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testSetInvalidAccessory()
+    {
+        $s = new Section([
+            'text' => 'Text',
+        ]);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Block element Maknz\\Slack\\BlockElement\\Text is not valid for Maknz\\Slack\\Block\\Section');
+        $s->setAccessory([
+            'type' => Text::TYPE_PLAIN,
+            'text' => 'Text',
+        ]);
     }
 
     /**

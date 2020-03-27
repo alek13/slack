@@ -124,4 +124,37 @@ class ActionsUnitTest extends TestCase
 
         $this->assertEquals($out, $a->toArray());
     }
+
+    /**
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testToArrayWithBlockId()
+    {
+        $a = new Actions([
+            'elements' => [[
+                'type' => 'button',
+                'action_id' => 'button_action',
+                'text' => 'OK',
+            ]],
+            'block_id' => 'block-1234',
+        ]);
+
+        $out = [
+            'type' => 'actions',
+            'elements' => [[
+                'type' => 'button',
+                'action_id' => 'button_action',
+                'text' => [
+                    'type' => Text::TYPE_PLAIN,
+                    'text' => 'OK',
+                    'emoji' => false,
+                ],
+            ]],
+            'block_id' => 'block-1234',
+        ];
+
+        $this->assertEquals($out, $a->toArray());
+    }
 }

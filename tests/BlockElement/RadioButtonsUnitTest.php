@@ -74,6 +74,13 @@ class RadioButtonsUnitTest extends TestCase
         $this->assertSame('Option 2', $initialOption->getText()->getText());
     }
 
+    public function testNothingInitiallySelected()
+    {
+        $r = new RadioButtons([]);
+
+        $this->assertNull($r->getInitialOption());
+    }
+
     public function testCreateWithTooManySelected()
     {
         $this->expectException(InvalidArgumentException::class);

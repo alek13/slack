@@ -17,6 +17,30 @@ class TextUnitTest extends TestCase
         $this->assertSame(Text::TYPE_PLAIN, $t->getType());
 
         $this->assertSame('Text', $t->getText());
+
+        $this->assertFalse($t->getEscapeEmojis());
+    }
+
+    public function testEscapeEmojis()
+    {
+        $t = new Text([
+            'type'  => Text::TYPE_PLAIN,
+            'text'  => 'Text',
+            'emoji' => true,
+        ]);
+
+        $this->assertTrue($t->getEscapeEmojis());
+    }
+
+    public function testVerbatim()
+    {
+        $t = new Text([
+            'type'     => Text::TYPE_MARKDOWN,
+            'text'     => 'Text',
+            'verbatim' => true,
+        ]);
+
+        $this->assertTrue($t->getVerbatim());
     }
 
     public function testToArrayPlain()
@@ -73,5 +97,14 @@ class TextUnitTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Text must be a string, keyed array or '.Text::class.' object');
         Text::create(0);
+    }
+
+    public function testStaticCreateMismatchType()
+    {
+        $t = Text::create('Text');
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Text type must be '.Text::TYPE_MARKDOWN);
+        Text::create($t, Text::TYPE_MARKDOWN);
     }
 }

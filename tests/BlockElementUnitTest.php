@@ -31,4 +31,20 @@ class BlockElementUnitTest extends TestCase
             'type' => 'invalid',
         ]);
     }
+
+    public function testFactoryInvalidArgument()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The attributes must be a Maknz\\Slack\\BlockElement or keyed array');
+        $element = BlockElement::factory('Invalid');
+    }
+
+    public function testFactoryPassthrough()
+    {
+        $element = BlockElement::factory([
+            'type' => 'button',
+        ]);
+
+        $this->assertSame($element, BlockElement::factory($element));
+    }
 }
