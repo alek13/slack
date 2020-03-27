@@ -15,6 +15,7 @@ class FileUnitTest extends TestCase
     {
         $f = new File([
             'external_id' => 'ABC123',
+            'source'      => 'remote',
         ]);
 
         $this->assertSame('ABC123', $f->getExternalId());
