@@ -5,6 +5,7 @@ use InvalidArgumentException;
 use Maknz\Slack\Block\Section;
 use Maknz\Slack\BlockElement\Text;
 use Slack\Tests\TestCase;
+use UnexpectedValueException;
 
 class SectionUnitTest extends TestCase
 {
@@ -166,5 +167,60 @@ class SectionUnitTest extends TestCase
         $s = new Section($in);
 
         $this->assertEquals($out, $s->toArray());
+    }
+
+    /**
+     * Text field becomes optional when fields are provided.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testSectionToArrayWithNoText()
+    {
+        $s = new Section([
+            'fields' => [
+                [
+                    'type' => Text::TYPE_PLAIN,
+                    'text' => 'Text 1',
+                ],
+                [
+                    'type' => Text::TYPE_MARKDOWN,
+                    'text' => 'Text 2',
+                ],
+            ],
+        ]);
+
+        $out = [
+            'type'   => 'section',
+            'fields' => [
+                [
+                    'type'     => Text::TYPE_PLAIN,
+                    'text'     => 'Text 1',
+                    'emoji'    => false,
+                ],
+                [
+                    'type'     => Text::TYPE_MARKDOWN,
+                    'text'     => 'Text 2',
+                    'verbatim' => false,
+                ],
+            ],
+        ];
+
+        $this->assertEquals($out, $s->toArray());
+    }
+
+    /**
+     * @throws \UnexpectedValueException
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testSectionMissingText()
+    {
+        $s = new Section([]);
+
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Section requires text attribute if no fields attribute is provided');
+        $s->toArray();
     }
 }

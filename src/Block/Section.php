@@ -6,6 +6,7 @@ use Maknz\Slack\Block;
 use Maknz\Slack\BlockElement;
 use Maknz\Slack\BlockElement\Text;
 use Maknz\Slack\FieldsTrait;
+use UnexpectedValueException;
 
 class Section extends Block
 {
@@ -143,15 +144,20 @@ class Section extends Block
     {
         $data = [
             'type' => $this->getType(),
-            'text' => $this->getText()->toArray(),
         ];
 
-        if ($this->getBlockId()) {
-            $data['block_id'] = $this->getBlockId();
+        if ($this->getText()) {
+            $data['text'] = $this->getText()->toArray();
         }
 
         if (count($this->getFields())) {
             $data['fields'] = $this->getFieldsAsArrays();
+        } elseif (!$this->getText()) {
+            throw new UnexpectedValueException('Section requires text attribute if no fields attribute is provided');
+        }
+
+        if ($this->getBlockId()) {
+            $data['block_id'] = $this->getBlockId();
         }
 
         if ($this->getAccessory()) {
