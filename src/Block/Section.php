@@ -152,7 +152,7 @@ class Section extends Block
 
         if (count($this->getFields())) {
             $data['fields'] = $this->getFieldsAsArrays();
-        } elseif (!$this->getText()) {
+        } elseif ( ! $this->getText()) {
             throw new UnexpectedValueException('Section requires text attribute if no fields attribute is provided');
         }
 
