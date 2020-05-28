@@ -78,6 +78,13 @@ class Attachment extends Payload
     protected $author_icon;
 
     /**
+     * Optional provide callback_id used to provide interactivity callback information on the request.
+     *
+     * @var string
+     */
+    protected $callback_id;
+
+    /**
      * The color to use for the attachment.
      *
      * @var string
@@ -143,6 +150,7 @@ class Attachment extends Payload
         'author_name' => 'author_name',
         'author_link' => 'author_link',
         'author_icon' => 'author_icon',
+        'callback_id' => 'callback_id',
         'actions'     => 'actions',
     ];
 
@@ -490,6 +498,30 @@ class Attachment extends Payload
     }
 
     /**
+     * Get the callback id for use with interactivity.
+     *
+     * @return string
+     */
+    public function getCallbackId()
+    {
+        return $this->callback_id;
+    }
+
+    /**
+     * Set the callback id to use with interactivity.
+     *
+     * @param string $callback_id
+     *
+     * @return $this
+     */
+    public function setCallbackId($callback_id)
+    {
+        $this->callback_id = $callback_id;
+
+        return $this;
+    }
+
+    /**
      * Clear the actions for the attachment.
      *
      * @return $this
@@ -604,6 +636,7 @@ class Attachment extends Payload
             'author_name' => $this->getAuthorName(),
             'author_link' => $this->getAuthorLink(),
             'author_icon' => $this->getAuthorIcon(),
+            'callback_id' => $this->getCallbackId(),
         ];
 
         $data['fields'] = $this->getFieldsAsArrays();
