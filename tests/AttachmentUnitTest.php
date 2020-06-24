@@ -26,6 +26,7 @@ class AttachmentUnitTest extends TestCase
             'footer_icon' => 'https://platform.slack-edge.com/img/default_application_icon.png',
             'timestamp' => $now,
             'mrkdwn_in' => ['pretext', 'text', 'fields'],
+            'callback_id' => 'callback',
         ]);
 
         $this->assertEquals('Fallback', $a->getFallback());
@@ -45,6 +46,8 @@ class AttachmentUnitTest extends TestCase
         $this->assertEquals('https://platform.slack-edge.com/img/default_application_icon.png', $a->getFooterIcon());
 
         $this->assertEquals($now, $a->getTimestamp());
+
+        $this->assertEquals('callback', $a->getCallbackId());
     }
 
     /**
@@ -105,6 +108,7 @@ class AttachmentUnitTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [
                 [
                     'title' => 'Title 1',
@@ -165,6 +169,7 @@ class AttachmentUnitTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [
                 [
                     'title' => 'Title 1',
