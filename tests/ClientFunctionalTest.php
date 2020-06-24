@@ -67,6 +67,7 @@ class ClientFunctionalTest extends TestCase
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
             'actions' => [],
+            'callback_id' => 'callback',
         ];
 
         $client = new Client('http://fake.endpoint', [
@@ -101,6 +102,7 @@ class ClientFunctionalTest extends TestCase
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
             'actions' => [],
+            'callback_id' => 'callback',
         ];
 
         $expectedHttpData = [
@@ -144,6 +146,7 @@ class ClientFunctionalTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [
                 [
                     'title' => 'Field 1',
@@ -175,6 +178,7 @@ class ClientFunctionalTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [
                 [
                     'title' => 'Field 1',
@@ -244,6 +248,7 @@ class ClientFunctionalTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [],
             'actions' => [
                 [
@@ -293,6 +298,7 @@ class ClientFunctionalTest extends TestCase
             'author_name' => 'Joe Bloggs',
             'author_link' => 'http://fake.host/',
             'author_icon' => 'http://fake.host/image.png',
+            'callback_id' => 'callback',
             'fields' => [],
             'actions' => [
                 [
