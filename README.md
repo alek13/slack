@@ -18,7 +18,7 @@ focused on ease-of-use and elegant syntax.
 # Quick Tour
  - `composer require alek13/slack`
  - [create an incoming webhook](https://my.slack.com/services/new/incoming-webhook) & copy `hook_url`
- - `$client = new Client('http://hook_url')`
+ - `$client = new Client('https://hook_url');`
  - `$client->to('#general')->send('Good morning');`
 
 Done!
