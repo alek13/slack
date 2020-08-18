@@ -16,10 +16,16 @@ focused on ease-of-use and elegant syntax.
 > This is the fork of popular, great, but abandoned package [`maknz/slack`](https://github.com/maknz/slack)
 
 # Quick Tour
- - `composer require alek13/slack`
  - [create an incoming webhook](https://my.slack.com/services/new/incoming-webhook) & copy `hook_url`
- - `$client = new Client('https://hook_url');`
- - `$client->to('#general')->send('Good morning');`
+ - `composer require alek13/slack`
+ - add the following code
+
+        use Maknz\Slack\Client;
+
+        require(__DIR__ .'/vendor/autoload.php');
+
+        $client = new Client('https://hook_url');
+        $client->to('#general')->send('Good morning');
 
 Done!
 
