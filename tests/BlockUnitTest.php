@@ -26,7 +26,7 @@ class BlockUnitTest extends TestCase
     public function testFactoryInvalidType()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/Block type must be one of/');
+        $this->expectExceptionMessage('Block type must be one of');
         $element = Block::factory([
             'type' => 'invalid',
         ]);
