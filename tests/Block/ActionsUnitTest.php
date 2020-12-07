@@ -44,7 +44,7 @@ class ActionsUnitTest extends TestCase
     public function testInvalidElement()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/Block element .+ is not valid/');
+        $this->expectExceptionMessage('Block element Maknz\Slack\BlockElement\MultiSelect is not valid');
         $a = new Actions([
             'elements' => [[
                 'type' => 'multi_static_select',

@@ -38,7 +38,7 @@ class ContextUnitTest extends TestCase
     public function testInvalidElement()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/Block element .+ is not valid/');
+        $this->expectExceptionMessage('Block element Maknz\Slack\BlockElement\MultiSelect is not valid');
         $c = new Context([
             'elements' => [[
                 'type' => 'multi_static_select',

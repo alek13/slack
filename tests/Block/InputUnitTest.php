@@ -34,7 +34,7 @@ class InputUnitTest extends TestCase
     public function testInvalidElement()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/Block element .+ is not valid/');
+        $this->expectExceptionMessage('Block element Maknz\Slack\BlockElement\Button is not valid');
         $i = new Input([
             'element' => [
                 'type' => 'button',

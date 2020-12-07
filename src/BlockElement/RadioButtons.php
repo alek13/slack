@@ -97,11 +97,15 @@ class RadioButtons extends Options
         ];
 
         if ($this->hasInitialOption) {
-            $data['initial_option'] = $this->getInitialOption()->toArray();
+            $initialOption = $this->getInitialOption();
+            if ($initialOption !== null) {
+                $data['initial_option'] = $initialOption->toArray();
+            }
         }
 
-        if ($this->getConfirm()) {
-            $data['confirm'] = $this->getConfirm()->toArray();
+        $confirm = $this->getConfirm();
+        if ($confirm !== null) {
+            $data['confirm'] = $confirm->toArray();
         }
 
         return $data;

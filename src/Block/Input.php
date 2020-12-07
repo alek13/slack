@@ -69,7 +69,7 @@ class Input extends Block
     /**
      * Set the input label.
      *
-     * @param mixed
+     * @param mixed $label
      *
      * @return $this
      */
@@ -93,7 +93,7 @@ class Input extends Block
     /**
      * Set the input element.
      *
-     * @param mixed
+     * @param mixed $element
      *
      * @return $this
      *
@@ -125,7 +125,7 @@ class Input extends Block
     /**
      * Set the input hint.
      *
-     * @param mixed
+     * @param mixed $hint
      *
      * @return $this
      */
@@ -149,7 +149,7 @@ class Input extends Block
     /**
      * Set whether the input is optional.
      *
-     * @param bool
+     * @param bool $optional
      *
      * @return $this
      */
