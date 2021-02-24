@@ -19,7 +19,7 @@ abstract class BlockElement extends Payload
      */
     protected static $validFor = [
         'button'              => ['Button',       ['section', 'actions']],
-        'checkbox'            => ['Checkbox',     ['section', 'actions', 'input']],
+        'checkboxes'          => ['Checkboxes',   ['section', 'actions', 'input']],
         'datepicker'          => ['DatePicker',   ['section', 'actions', 'input']],
         'image'               => ['Image',        ['section', 'context']],
         'multi_static_select' => ['MultiSelect',  ['section', 'input']],
