@@ -3,17 +3,34 @@ namespace Slack\Tests;
 
 use InvalidArgumentException;
 use Maknz\Slack\BlockElement;
-use Maknz\Slack\BlockElement\Button;
 
 class BlockElementUnitTest extends TestCase
 {
-    public function testFactoryWithArray()
+    /**
+     * @dataProvider factoryArrayProvider
+     */
+    public function testFactoryWithArray($type, $class)
     {
         $element = BlockElement::factory([
-            'type' => 'button',
+            'type' => $type,
         ]);
 
-        $this->assertInstanceOf(Button::class, $element);
+        $this->assertInstanceOf($class, $element);
+    }
+
+    public function factoryArrayProvider()
+    {
+        return [
+            ['button',              BlockElement\Button::class],
+            ['checkboxes',          BlockElement\Checkboxes::class],
+            ['datepicker',          BlockElement\DatePicker::class],
+            ['image',               BlockElement\Image::class],
+            ['multi_static_select', BlockElement\MultiSelect::class],
+            ['overflow',            BlockElement\Overflow::class],
+            ['plain_text_input',    BlockElement\TextInput::class],
+            ['radio_buttons',       BlockElement\RadioButtons::class],
+            ['static_select',       BlockElement\Select::class],
+        ];
     }
 
     public function testFactoryMissingType()
