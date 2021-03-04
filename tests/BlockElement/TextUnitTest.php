@@ -1,5 +1,5 @@
 <?php
-namespace Slack\Tests\BlockElements;
+namespace Slack\Tests\BlockElement;
 
 use InvalidArgumentException;
 use Maknz\Slack\BlockElement\Text;
