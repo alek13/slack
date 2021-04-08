@@ -11,7 +11,7 @@ with [incoming webhooks](https://my.slack.com/services/new/incoming-webhook),
 focused on ease-of-use and elegant syntax.
 
 **supports:** PHP `7.1`, `7.2`, `7.3`, `7.4` or `8.0`  
-**require:** `guzzlehttp/guzzle` any of versions `~6.0|~5.0|~4.0`
+**require:** `guzzlehttp/guzzle` any of versions `~7.0|~6.0|~5.0|~4.0`
 
 > This is the fork of popular, great, but abandoned package [`maknz/slack`](https://github.com/maknz/slack)
 
